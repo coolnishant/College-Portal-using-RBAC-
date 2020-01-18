@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Remove TA to Course</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+</head>
+<body>
+    <h1>Hello, {{(session['userdata'])['name']}} ({{session['role']}})</h1>
+    {% include 'logoutbutton.html' %}
+    <h2>Course is: {{idcourses}}</h2>
+
+
+    <h2>Assigned TA (Total: {{data|length}})</h2>
+    <!--<table style="width:100%">-->
+        <!--<tr>-->
+            <!--<th>TA ID</th>-->
+            <!--&lt;!&ndash;<th>Assigned</th>&ndash;&gt;-->
+        <!--</tr>-->
+        <!--{% for da in data %}-->
+        <!--<tr>-->
+            <!--<td>-->
+                <!--{{da[0]}}-->
+            <!--</td>-->
+        <!--</tr>-->
+        <!--{% endfor %}-->
+    <!--</table>-->
+    <!---->
+    <!--<h2>Not Assigned TA (Total : {{data2|length}})</h2>-->
+        <form action="/removeta" method="post" novalidate>
+            <input type="hidden" id="idcourses" name="idcourses" value="{{idcourses}}">
+        <table style="width:100%">
+            <tr>
+                <th>TA ID</th>
+                <th>To Assign CheckBox</th>
+            </tr>
+            {% for da in data %}
+               <tr>
+                    <td>{{da[0]}}</td>
+                    <td><input type="checkbox" name="removetachkbox" value="{{da[0]}}"></td>
+               </tr>
+          {% endfor %}
+            {% if 'Permission Denied' not in data[0] and data|length != 0 %}
+            <tr><td> <p>{{ removetaform.submit() }}</p></td></tr>
+            </table>
+            {% endif %}
+        </form>
+</body>
+</html>

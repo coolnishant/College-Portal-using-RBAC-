@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+
+    <title>Unassigned Courses</title>
+  </head>
+<body>
+    <h1>Hello, {{(session['userdata'])['name']}} ({{session['role']}})</h1>
+    {% include 'logoutbutton.html' %}
+
+    <div class="list-group">
+                {% if((data|length) == 0) %}
+            <h2>All course assigned to faculty!</h2>
+            {% else %}
+
+    <table style="width:100%">
+        <tr>
+            <th>Course ID</th>
+            <th>Course Name</th>
+            <!--<th>Marks</th>-->
+            <!--<th></th>-->
+        </tr>
+    {% for da in data %}
+    <tr>
+        <td>    <a href="{{ url_for('assignfacultycourse',idcourses=da[0]) }}">{{da[0]}}</a></td>
+        <td>    <a href="{{ url_for('assignfacultycourse',idcourses=da[0]) }}">{{da[1]}}</a></td>
+    </tr>
+        {% endfor %}
+        <!--<a href="eachcourses.html">{{d}}</a>-->
+    </table>
+        {% endif %}
+      <!--<a href="#" class="list-group-item">Database level work</a>-->
+      <!--<a href="#" class="list-group-item">List all my courses</a>-->
+      <!--<a href="#" class="list-group-item">Create Course</a>-->
+      <!--<a href="#" class="list-group-item">Create new Account of user</a>-->
+      <!--<a href="#" class="list-group-item">Grant privileges</a>-->
+      <!--<a href="#" class="list-group-item">Add student to course</a>-->
+      <!--<a href="#" class="list-group-item">Assign TAs to Course</a>-->
+      <!--<a href="#" class="list-group-item">Remove TAs from Course</a>-->
+      <!--<a href="#" class="list-group-item">ADD Student Marks</a>-->
+      <!--<a href="#" class="list-group-item">EDIT Student Marks</a>-->
+      <!--<a href="#" class="list-group-item">DELETE Student Marks</a>-->
+      <!--<a href="#" class="list-group-item">View Grades</a>-->
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

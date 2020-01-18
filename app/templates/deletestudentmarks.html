@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Marks to Course</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+</head>
+<body>
+    <h1>Hello, {{(session['userdata'])['name']}} ({{session['role']}})</h1>
+    {% include 'logoutbutton.html' %}
+    <h2>Course is: {{idcourses}}</h2>
+
+    <h2>All Student Marks (Total : {{data|length}})</h2>
+        <form action="/deletestudentmarks" method="post">
+            <input type="hidden" id="idcourses" name="idcourses" value="{{idcourses}}">
+        <table style="width:100%">
+            <tr>
+                <th>Student ID</th>
+                <th>Marks</th>
+            </tr>
+            {% for da in data %}
+               <tr>
+                   <td>{{da[0]}}</td>
+                   <td><input type="checkbox" name="deletestudentmarkschkbox" value="{{da[0]}}"></td>
+               </tr>
+            {% endfor %}
+            {% if 'Permission Denied' not in data[0] and data|length != 0 %}
+            <tr><td> <p>{{ deletestudentmarksform.submit() }}</p></td></tr>
+            </table>
+            {% endif %}
+        </form>
+</body>
+</html>
+

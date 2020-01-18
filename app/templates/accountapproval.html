@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Role Approval</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+</head>
+<body>
+    <h1>Hello, {{(session['userdata'])['name']}} ({{session['role']}})</h1>
+    {% include 'logoutbutton.html' %}
+    {% if(res|length != 0) %}
+    <p class='alert alert-info' style="color:red">{{ res }}
+        {% endif %}
+        {% if perm == True %}
+
+    <!--<h2>Assigned TA (Total: {{data|length}})</h2>-->
+    <!--<table style="width:100%">-->
+        <!--<tr>-->
+            <!--<th>TA ID</th>-->
+            <!--&lt;!&ndash;<th>Assigned</th>&ndash;&gt;-->
+        <!--</tr>-->
+        <!--{% for da in data %}-->
+        <!--<tr>-->
+            <!--<td>-->
+                <!--{{da[0]}}-->
+            <!--</td>-->
+        <!--</tr>-->
+        <!--{% endfor %}-->
+    <!--</table>-->
+
+    <h2>Role Not Assigned User Accounts (Total : {{data|length}})</h2>
+    {% if data|length == 0 %}
+        <h3>No user left for Role assignment! </h3>
+    {% else %}
+
+    <form action="/accountapproval" method="post">
+        <table style="width:100%">
+            <tr>
+                <th>User ID</th>
+                <th>User Name</th>
+                <th>Role to be assigned</th>
+            </tr>
+            {% for da in data %}
+                    <input type="hidden" name="idusers" value="{{da[0]}}">
+                    <td>{{da[0]}}</td>
+                    <td>{{da[1]}}</td>
+                   <td><select name="comp_select_{{da[0]}}" class="form-control">
+                        <option value="none">None</option>
+                        <option value="faculty">Faculty</option>
+                        <option value="ta">TA</option>
+                        <option value="student">Student</option>
+               </select>
+                   </td>
+               </tr>
+          {% endfor %}
+            <tr><td> <p>{{ form.submit() }}</p></td></tr>
+            </table>
+        </form>
+        {% endif %}
+      {% else %}
+            <h2>You don't have privilege to access!</h2>
+    {% endif %}
+</body>
+</html>

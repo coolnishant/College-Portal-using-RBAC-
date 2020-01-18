@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+      .logoutLblPos{
+       position:fixed;
+       right:10px;
+       top:5px;
+    }
+      .logoutLblPos2{
+       position:fixed;
+       right:100px;
+       top:5px;
+    }
+    </style>
+    <a href="{{ url_for('onepage') }}" class="btn btn-warning logoutLblPos2" role="button">Home</a>
+    <form align="right" name="form1" method="post" action="/logout">
+      <label class="logoutLblPos">
+      <button type="submit" class="btn btn-primary">Logout</button>
+      </label>
+    </form>
+</html>

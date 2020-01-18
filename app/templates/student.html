@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student</title>
+</head>
+<body>
+    Hello {{form.username.data}} ({{session['role']}})
+
+    <table style="width:100%">
+    {% for da in data %}
+    <tr>
+        {% for d in da%}
+        <th>{{d}}</th>
+        {% endfor %}
+    </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add TA to Course</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+</head>
+<body>
+    <h1>Hello, {{(session['userdata'])['name']}} ({{session['role']}})</h1>
+    {% include 'logoutbutton.html' %}
+    <h2>Course is: {{idcourses}}</h2>
+    <h2>Assigned TA (Total: {{data|length}})</h2>
+    <table style="width:100%">
+        <tr>
+            <th>TA ID</th>
+            <!--<th>Assigned</th>-->
+        </tr>
+        {% for da in data %}
+        <tr>
+            <td>
+                {{da[0]}}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    </form>
+    <h2>Not Assigned TA (Total : {{data2|length}})</h2>
+        <form action="/addta" method="post" novalidate>
+            <input type="hidden" id="idcourses" name="idcourses" value="{{idcourses}}">
+        <table style="width:100%">
+            <tr>
+                <th>TA ID</th>
+                <th>To Assign CheckBox</th>
+            </tr>
+            {% for da in data2 %}
+               <tr>
+                    <td>{{da[0]}}</td>
+                    <td><input type="checkbox" name="addtachkbox" value="{{da[0]}}"></td>
+               </tr>
+          {% endfor %}
+            {% if 'Permission Denied' not in data2[0] and data2|length != 0 %}
+            <tr><td> <p>{{ addtaform.submit() }}</p></td></tr>
+            </table>
+            {% endif %}
+        </form>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+
+    <title>Database Activity</title>
+  </head>
+<body>
+    <h1>Hello, {{(session['userdata'])['name']}} ({{session['role']}})</h1>
+    {% include 'logoutbutton.html' %}
+
+    <div class="list-group">
+                {% if((data|length) == 0) %}
+            <h2>You don't have privilege to access!</h2>
+            {% else %}
+
+      <a href="{{ url_for('creatingcourses') }}" class="list-group-item">Add New Courses</a>
+      <a href="{{ url_for('accountapproval') }}" class="list-group-item">New Accounts Role Approval</a>
+      <a href="{{ url_for('unassignedcourses') }}" class="list-group-item">Unassigned Courses</a>
+      <!--<a href="#" class="list-group-item">Change Class Privileges</a>-->
+
+        {% endif %}
+      <!--<a href="#" class="list-group-item">Database level work</a>-->
+      <!--<a href="#" class="list-group-item">List all my courses</a>-->
+      <!--<a href="#" class="list-group-item">Create Course</a>-->
+      <!--<a href="#" class="list-group-item">Create new Account of user</a>-->
+      <!--<a href="#" class="list-group-item">Grant privileges</a>-->
+      <!--<a href="#" class="list-group-item">Add student to course</a>-->
+      <!--<a href="#" class="list-group-item">Assign TAs to Course</a>-->
+      <!--<a href="#" class="list-group-item">Remove TAs from Course</a>-->
+      <!--<a href="#" class="list-group-item">ADD Student Marks</a>-->
+      <!--<a href="#" class="list-group-item">EDIT Student Marks</a>-->
+      <!--<a href="#" class="list-group-item">DELETE Student Marks</a>-->
+      <!--<a href="#" class="list-group-item">View Grades</a>-->
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

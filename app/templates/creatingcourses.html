@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Course</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+
+</head>
+<body>
+    <h1>Hello, {{(session['userdata'])['name']}} ({{session['role']}})</h1>
+    {% include 'logoutbutton.html' %}
+    {% if(res|length != 0) %}
+    <p class='alert alert-info' style="color:red">{{ res }}
+        {% endif %}
+        {% if permcreate == True %}
+    <h2>Existing Courses (Total: {{data|length}})</h2>
+    <div class="table-responsive">
+    <table class="table-hover table-bordered" style="width:100%">
+        <tr>
+            <th>Course ID</th>
+            <th>Course Name</th>
+        </tr>
+        {% for da in data %}
+        <tr>
+            <td>
+                {{da[0]}}
+            </td>
+            <td>
+                {{da[1]}}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+        </div>
+</br>
+    <h2>Add New Course</h2>
+        <form action="/creatingcourses" method="post" >
+        <table style="width:100%">
+               <tr>
+                    <td>{{ form.idcourses.label}}</td>
+                    <td>{{ form.idcourses(size=10)}}</td>
+               </tr>
+                <tr>
+                    <td>{{ form.coursename.label}}</td>
+                    <td>{{ form.coursename(size=40)}}</td>
+               </tr>
+            <tr>
+                <td> {{ form.submit() }}</td></tr>
+            </table>
+        </form>
+    {% else %}
+            <h2>You don't have privilege to access!</h2>
+    {% endif %}
+
+</body>
+</html>
